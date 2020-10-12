@@ -22,14 +22,34 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,//busca todos los archivos sass en mi proyecto
-                use:[
-                    "style-loader",//procesa stilos en linea
-                    "css-loader",// procesa estilos en archivos css
-                    "sass-loader"//procesa estilos en archivos scss
-                ]//los loader el orden si importa
-                    
-                
+                test: /\.(scss)$/,
+                use: [{
+                  loader: 'style-loader', // inject CSS to page
+                }, {
+                  loader: 'css-loader', // translates CSS into CommonJS modules
+                }, {
+                  loader: 'postcss-loader', // Run post css actions
+                    options: {
+                    plugins: function () { // post css plugins, can be exported to postcss.config.js
+                        return [
+                        require('precss'),
+                        require('autoprefixer')
+                        ];
+                    },
+                    postcssOptions: {
+                            plugins: [
+                            [
+                                'postcss-preset-env',
+                                {
+                                // Options
+                                },
+                            ],
+                            ],
+                        },
+                    }
+                }, {
+                  loader: 'sass-loader' // compiles Sass to CSS
+                }]
             },
             {
                 test: /\.(png|jpg|gif|svg|jpeg)$/,//busca todos los archivos tipo imagenes en mi proyecto
