@@ -1,9 +1,7 @@
 class Pokedex{
-
     constructor(){
         this.pokemons = [];
     }
-
 //function create one card
 addPokemon(pokemon){
     this.pokemons.push(pokemon);
