@@ -1,10 +1,14 @@
 class Pokedex{
 
-    constructor(pokemons){
-        this.pokemons = pokemons;
+    constructor(){
+        this.pokemons = [];
     }
 
 //function create one card
+addPokemon(pokemon){
+    this.pokemons.push(pokemon);
+}
+
 getPokeId(i){
     var id_poke= this.pokemons[i];//para buscar only
     console.log(id_poke)
@@ -30,11 +34,11 @@ getPokemonImgUrl(id_poke){
 getPokemonType(i){
     var type_length=this.pokemons[i].types.length;
     if (type_length>1){
-        var type_poke = [this.pokemons[i].type[0].type.name, this.pokemons[i].type[1].type.name];
+        var type_poke = [this.pokemons[i].types[0].type.name, this.pokemons[i].types[1].type.name];
         var type_poke_show=`Type 1: ${type_poke[0]}, Type 2: ${type_poke[1]}`;
         console.log(type_poke_show)
     } else{
-        var type_poke= this.pokemons[i].type[0].type.name;
+        var type_poke= this.pokemons[i].types[0].type.name;
         var type_poke_show=`Type: ${type_poke}`;
         console.log(type_poke_show)
     }
@@ -111,7 +115,7 @@ start(){
     addCardBig.innerHTML = '<div class="row justify-content-center">' + this.divsCartaGrande();
 
     console.log(this.pokemons);
-    console.log(this.pokemons[0]);
+    //console.log(this.pokemons[0]);
 
     var addCardSmall = document.createElement('div')
     addCardSmall.setAttribute('class','d-xs-block d-sm-block d-md-block d-lg-none d-xl-none') 

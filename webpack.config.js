@@ -17,9 +17,13 @@ module.exports = {
             {
                 test: /\.js$/,//busca todos los archivos js en mi proyecto
                 exclude: /node_modules/,//le digo que no busque en la carpeta de node_modules
-                use:{
-                    loader: "babel-loader"
-                }
+                enforce: 'pre',
+                use:[{
+                    loader: "babel-loader",
+                },
+                {
+                    loader: "source-map-loader",
+                }]
             },
             {
                 test: /\.(scss)$/,
